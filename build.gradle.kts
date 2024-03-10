@@ -7,6 +7,8 @@ val exposed_version: String by project
 val h2_version: String by project
 val junit_version: String by project
 val mockk_version: String by project
+val assertk_version: String by project
+val assertj_version: String by project
 plugins {
     kotlin("jvm") version "1.9.23"
     id("io.ktor.plugin") version "2.3.9"
@@ -47,6 +49,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("org.junit.jupiter:junit-jupiter:$junit_version")
     testImplementation("io.mockk:mockk:$mockk_version")
+    testImplementation("com.willowtreeapps.assertk:assertk-jvm:$assertk_version")
+    testImplementation("org.assertj:assertj-core:$assertj_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
