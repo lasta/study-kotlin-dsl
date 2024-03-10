@@ -29,7 +29,6 @@ dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-resources")
     implementation("io.ktor:ktor-server-webjars-jvm")
-    implementation("org.webjars:jquery:3.2.1")
     implementation("io.ktor:ktor-server-swagger-jvm")
     implementation("io.ktor:ktor-server-openapi")
     implementation("io.ktor:ktor-server-metrics-micrometer-jvm")
