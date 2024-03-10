@@ -29,12 +29,20 @@ class Parallel(
 ) : WorkflowNode {
     constructor(vararg nodes: WorkflowNode, maxConcurrency: Int? = null) : this(nodes.toList(), maxConcurrency)
 
-    override fun run() = runBlocking {
-        nodes.chunked(maxConcurrency ?: nodes.size).forEach { chunked ->
-            coroutineScope {
-                chunked.map { job ->
-                    async { job.run() }
-                }.awaitAll()
+    override fun run() {
+        if (nodes.isEmpty()) {
+            return
+        }
+        if (maxConcurrency != null) {
+            require(maxConcurrency > 0) { "maxConcurrency must be positive (got: $maxConcurrency)" }
+        }
+        runBlocking {
+            nodes.chunked(maxConcurrency ?: nodes.size).forEach { chunked ->
+                coroutineScope {
+                    chunked.map { job ->
+                        async { job.run() }
+                    }.awaitAll()
+                }
             }
         }
     }
