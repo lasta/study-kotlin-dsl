@@ -5,6 +5,8 @@ val logback_version: String by project
 val prometeus_version: String by project
 val exposed_version: String by project
 val h2_version: String by project
+val junit_version: String by project
+val mockk_version: String by project
 plugins {
     kotlin("jvm") version "1.9.23"
     id("io.ktor.plugin") version "2.3.9"
@@ -43,11 +45,15 @@ dependencies {
     implementation("com.h2database:h2:$h2_version")
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:$junit_version")
+    testImplementation("io.mockk:mockk:$mockk_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
