@@ -25,18 +25,15 @@ class Sequential(
 
 class Parallel(
     private val nodes: List<WorkflowNode>,
-    private val maxConcurrency: Int? = nodes.size,
+    private val maxConcurrency: Int?,
 ) : WorkflowNode {
-    constructor(vararg nodes: WorkflowNode, maxConcurrency: Int) : this(nodes.toList(), maxConcurrency)
-    constructor(vararg nodes: WorkflowNode) : this(nodes.toList(), nodes.size)
+    constructor(vararg nodes: WorkflowNode, maxConcurrency: Int? = null) : this(nodes.toList(), maxConcurrency)
 
     override fun run() = runBlocking {
         nodes.chunked(maxConcurrency ?: nodes.size).forEach { chunked ->
             coroutineScope {
                 chunked.map { job ->
-                    async {
-                        job.run()
-                    }
+                    async { job.run() }
                 }.awaitAll()
             }
         }
