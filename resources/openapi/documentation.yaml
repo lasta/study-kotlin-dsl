@@ -1,0 +1,8 @@
+openapi: "3.0.3"
+info:
+  title: "study_kotlin_dsl API"
+  description: "study_kotlin_dsl API"
+  version: "1.0.0"
+servers:
+- url: "https://study_kotlin_dsl"
+paths: {}
