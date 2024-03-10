@@ -49,7 +49,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("org.junit.jupiter:junit-jupiter:$junit_version")
     testImplementation("io.mockk:mockk:$mockk_version")
-    testImplementation("com.willowtreeapps.assertk:assertk-jvm:$assertk_version")
+    testImplementation("com.willowtreeapps.assertk:assertk:$assertk_version")
     testImplementation("org.assertj:assertj-core:$assertj_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
